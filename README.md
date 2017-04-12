@@ -20,37 +20,36 @@
 
 <p>2. 知道读卡器的PID和VID，这两个参数是匹配硬件的唯一码，android系统可以很多外接usb设备，我demo里面放到了Constants文件里面<br />
 <code>
-<br />public static final int[] DEVICE_PIDS = {53};
+public static final int[] DEVICE_PIDS = {53};
 public static final int[] DEVICE_VIDS = {65535};
 </code>
-</p>    
-    <br /><p>我demo的卡片数据是由0-9的数字组成的，所以我只替换这些，如果有其他的，可以google一下usb-hid协议，里面有对应的输出转换<br />
-    <code>public static String usbcodetokeycode(int xx){
-        String str = "";
-        if (xx == 30){
-            str = "1";
-        }else if (xx == 31){
-            str = "2";
-        }else if (xx == 32){
-            str = "3";
-        }else if (xx == 33){
-            str = "4";
-        }else if (xx == 34){
-            str = "5";
-        }else if (xx == 35){
-            str = "6";
-        }else if (xx == 36){
-            str = "7";
-        }else if (xx == 37){
-            str = "8";
-        }else if (xx == 38){
-            str = "9";
-        }else if (xx == 39){
-            str = "0";
-        }
-        return  str;
-    }
-    </code>
+</p>
+<p>我demo的卡片数据是由0-9的数字组成的，所以我只替换这些，如果有其他的，可以google一下usb-hid协议，里面有对应的输出转换<br />
+  <code>public static String usbcodetokeycode(int xx){</code><br />
+        <code>String str = "";</code><br />
+        <code>if (xx == 30){</code><br />
+            <code>str = "1";</code><br />
+        <code>}else if (xx == 31){</code><br />
+            <code>str = "2";</code><br />
+        <code>}else if (xx == 32){</code><br />
+            <code>str = "3";</code><br />
+        <code>}else if (xx == 33){</code><br />
+            <code>str = "4";</code><br />
+        <code>}else if (xx == 34){</code><br />
+            <code>str = "5";</code><br />
+        <code>}else if (xx == 35){</code><br />
+            <code>str = "6";</code><br />
+        <code>}else if (xx == 36){</code><br />
+            <code>str = "7";</code><br />
+        <code>}else if (xx == 37){</code><br />
+            <code>str = "8";</code><br />
+        <code>}else if (xx == 38){</code><br />
+            <code>str = "9";</code><br />
+        <code>}else if (xx == 39){</code><br />
+            <code>str = "0";</code><br />
+        <code>}</code><br />
+        <code>return  str;</code><br />
+    <code>}</code><br />
 </p>
 
 <p>3. 创建一个工具类，注册一个动态广播，来监听刷卡的输入，包含了查找对应的usb设备，是否有权限可以读取，如果有的话就可以执行读取数据的工作，
