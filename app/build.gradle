@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        applicationId "com.coolshow.extdevicedemo"
+        minSdkVersion 15
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    signingConfigs {
+        release {
+            storeFile file('edd.jks')
+            storePassword '123123'
+            keyAlias 'sz'
+            keyPassword '123123'
+        }
+    }
+    buildTypes {
+        release {
+            debuggable true//设置是否生成debug模式的apk
+            minifyEnabled false//是否混淆
+            zipAlignEnabled true//是否zip对齐
+            proguardFile('proguard.cfg')//添加混淆文件
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+
+    }
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        testCompile 'junit:junit:4.12'
+        compile 'com.android.support:appcompat-v7:23.4.0'
+    }
+}
